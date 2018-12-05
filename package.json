@@ -54,7 +54,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "npm run build"
   },
   "devDependencies": {
     "@angular/animations": "6.1.10",
