@@ -1,0 +1,65 @@
+<div class="grid__wrapper">
+
+    <div class="sample__header">
+        <div class="switch-sample">
+            <h3 class="switch-sample__title">Realtime Angular Application</h3>
+            <igx-switch [(ngModel)]="live" [disabled]="isFinished" title="Start/Stop the realtime updates"> <span class="switch-sample__label">Live</span>
+            </igx-switch>
+        </div>
+        <igx-input-group>
+            <input class="gridSample__filter" igxInput type="text" placeholder="Filter by name" (input)="filter($event.target.value)">
+        </igx-input-group>
+    </div>
+
+    <igx-grid #grid1 [data]="localData" [paging]="true" [perPage]="100" [height]="null" (onSelection)="cellSelection($event)"
+        [paginationTemplate]="pager">
+
+        <igx-column header="Row ID" headerClasses="myClass" width="100px" field="Id" sortable="true">
+            <ng-template igxCell let-cell="cell">
+                <div class="cell__inner">
+                    <div>{{ cell.value }}</div>
+                </div>
+            </ng-template>
+        </igx-column>
+
+        <igx-column field="Name" header="Name" width="380">
+            <ng-template igxCell let-cell="cell">
+                <div class="cell__inner">
+                    <span class="name">{{ cell.value }}</span>
+                    <igx-badge *ngIf="live" [type]="getBadgeType(cell)" [icon]="getIconType(cell)"></igx-badge>
+                </div>
+
+            </ng-template>
+        </igx-column>
+
+        <igx-column field="Number" header="Number" width="100px" [hidden]="hideNumber" dataType="number">
+            <ng-template igxCell let-val>
+                <div class="cell__inner">
+                    {{ val }}
+                </div>
+            </ng-template>
+        </igx-column>
+    </igx-grid>
+
+    <ng-template #pager let-grid>
+        <div *ngIf="grid.paging && grid.totalPages > 0" class="igx-paginator">
+            <button [disabled]="grid.isFirstPage" (click)="grid.paginate(0)" igxButton="icon" igxRipple
+                igxRippleCentered="true">
+                <igx-icon>first_page</igx-icon>
+            </button>
+            <button [disabled]="grid.isFirstPage" (click)="grid.previousPage()" igxButton="icon" igxRipple
+                igxRippleCentered="true">
+                <igx-icon>chevron_left</igx-icon>
+            </button>
+            <span>{{ grid.page + 1 }} of {{ grid.totalPages }}</span>
+            <button [disabled]="grid.isLastPage" (click)="grid.nextPage()" igxRipple igxRippleCentered="true" igxButton="icon">
+                <igx-icon>chevron_right</igx-icon>
+            </button>
+            <button [disabled]="grid.isLastPage" (click)="grid.paginate(grid.totalPages - 1)" igxButton="icon"
+                igxRipple igxRippleCentered="true">
+                <igx-icon>last_page</igx-icon>
+            </button>
+        </div>
+    </ng-template>
+
+</div>
