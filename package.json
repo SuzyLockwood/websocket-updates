@@ -1,5 +1,5 @@
 {
-  "name": "earqrlqovamk.angular",
+  "name": "realtime-angular",
   "version": "0.0.0",
   "private": true,
   "dependencies": {
@@ -47,14 +47,13 @@
     "zone.js": "0.8.26"
   },
   "scripts": {
-    "ng": "ng",
-    "start": "http-server dist/",
+    "start": "http-server",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
     "pree2e": "webdriver-manager update",
     "e2e": "protractor",
     "preinstall": "npm install -g http-server",
-    "postinstall": "ng build --prod"
+    "postinstall": "ng build && mv dist/* ."
   },
   "devDependencies": {
     "@angular/animations": "6.1.10",
