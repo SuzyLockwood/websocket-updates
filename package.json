@@ -49,13 +49,12 @@
     "zone.js": "0.8.26"
   },
   "scripts": {
-    "start": "http-server",
-    "lint": "tslint \"src/**/*.ts\"",
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
     "test": "ng test",
-    "pree2e": "webdriver-manager update",
-    "e2e": "protractor",
-    "preinstall": "npm install -g http-server",
-    "postinstall": "ng build && mv dist/* ."
+    "lint": "ng lint",
+    "e2e": "ng e2e"
   },
   "devDependencies": {
     "@angular/animations": "6.1.10",
